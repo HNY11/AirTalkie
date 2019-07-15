@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the BluetoothChatService to perform bluetooth connections
         mChatService = new BluetoothChatService(this, mHandler);
         // Initialize the buffer for outgoing messages
-        mOutStringBuffer = new StringBuffer("");
+        mOutStringBuffer = new StringBuffer();
     }
 
     @Override
@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
                     mChatService.connect(device);
+
                 }
                 break;
             case REQUEST_ENABLE_BT:
@@ -303,6 +304,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.discoverable:
                 // Ensure this device is discoverable by others
                 ensureDiscoverable();
+                return true;
+            case R.id.calling:
+                //start the calling activity
+               startActivity(new Intent(MainActivity.this,CallingActivity.class));
                 return true;
         }
         return false;
